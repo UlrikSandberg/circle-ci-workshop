@@ -38,6 +38,6 @@ workflows:
   two-job-workflow:
     jobs:
       - test
-      - package:
+      - build:
           requires:
             - test
