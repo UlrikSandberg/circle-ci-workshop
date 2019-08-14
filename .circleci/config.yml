@@ -2,7 +2,7 @@ workflows:
   version: 2.0
   two_job_flow:
     jobs:
-      test:
+      - test:
         docker:
           - image: circleci/openjdk:8-jdk
         steps:
@@ -13,13 +13,13 @@ workflows:
                 gradle test
           - store_test_results:
               path: build/test-results
-      package:
-        docker:
-          - image: circleci/openjdk:8-jdk
+      - package:
+          docker:
+            - image: circleci/openjdk:8-jdk
         steps:
           - checkout
           - run:
-              name: The first step
+              name: Packaging test
               command: | 
                 gradle jar
           - store_test_results:
