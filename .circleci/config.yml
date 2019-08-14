@@ -25,7 +25,7 @@ jobs:
           path: build/libs
           destination: prefix
 workflow:
-  version: 2.0
+  version: 2
   two-job-workflow:
     jobs:
       - test
