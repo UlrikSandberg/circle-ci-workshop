@@ -29,7 +29,9 @@ workflows:
   two-job-workflow:
     jobs:
       - test
-      - package
+      - package:
+          requires:
+            - test
 
 
 
