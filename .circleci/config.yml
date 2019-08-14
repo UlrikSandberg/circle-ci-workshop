@@ -38,14 +38,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      # Login to docker
-     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-
-     # build the application image
-     - run: docker build -t $DOCKER_USER/myapp:$CIRCLE_SHA1 .
-
-     # deploy the image
-     - run: docker push $DOCKER_USER/myapp:$CIRCLE_SHA1
+      - run: docker login -u  $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t $DOCKER_USER/myapp:$CIRCLE_SHA1 .
+      - run: docker push $DOCKER_USER/myapp:$CIRCLE_SHA1
 workflows:
   version: 2
   two-job-workflow:
@@ -54,3 +49,6 @@ workflows:
       - build:
           requires:
             - test
+      - dockerize:
+          requires:
+            - build
